@@ -1,18 +1,30 @@
 {
   "name": "bitlyapi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Bitly api",
   "main": "./src/bitly",
   "scripts": {
     "test": "mocha",
     "coverage": "istanbul cover _mocha -- -R spec"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kishanmadhesiya/bitly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kishanmadhesiya/bitly/issues"
+  },
   "keywords": [
     "bitly",
     "shorten",
-    "url"
+    "url",
+    "bitly api"
   ],
-  "author": "Kishan Madhesiya [kishanmadhesiya@gmail.com]",
+  "author": {
+    "name": "Kishan Madhesiya",
+    "email": "kishanmadhesiya@gmail.com",
+    "url": "https://github.com/kishanmadhesiya"
+  },
   "license": "ISC",
   "dependencies": {
     "boom": "^5.1.0",

@@ -117,7 +117,7 @@ class Bitly {
       url: links,
       domain: this.domain
     };
-
+    console.log(this.createNiceUrl(query, 'lookup'));
     return this.makeRequest(this.createNiceUrl(query, 'lookup'));
 
   }
@@ -190,6 +190,7 @@ class Bitly {
 
     return this.makeRequest(this.createNiceUrl(query, 'user/link_edit'));
   }
+
 
 }
 module.exports = Bitly;
