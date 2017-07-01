@@ -16,7 +16,7 @@ class Bitly {
     this.domain = 'bit.ly';
   }
 
-  generateNiceUrl(query, method){
+  createNiceUrl(query, method){
     query['access_token'] = this.accessToken;
 
     return url.parse(url.format({
@@ -27,21 +27,16 @@ class Bitly {
     }));
   }
 
-  doRequest (requestUri) {
+  makeRequest (requestUri) {
     return new Promise((resolve, reject) => {
       return fetch(requestUri)
         .then((response) => {
-        if (response.status >= 400){
-            return reject(Boom.create(response.status, response.statusText, response));
-          }else{
-            return resolve(response.json());
-          }
+        return resolve(response.json());
         });
     });
   }
 
   sortUrlsAndHash (items, query) {
-    console.log(query)
     let shortUrl = [];
     let hash = [];
 
@@ -68,7 +63,132 @@ class Bitly {
       domain: domain ? domain : this.domain
     };
 
-    return this.doRequest(this.generateNiceUrl(query, 'shorten'));
+    return this.makeRequest(this.createNiceUrl(query, 'shorten'));
+  }
+
+  expand (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrlsAndHash(items, query);
+
+    return this.makeRequest(this.createNiceUrl(query, 'expand'));
+  }
+
+  clicks (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrlsAndHash(items, query);
+
+    return this.makeRequest(this.createNiceUrl(query, 'clicks'));
+  }
+
+  clicksByMinute (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrlsAndHash(items, query);
+
+    return this.makeRequest(this.createNiceUrl(query, 'clicks_by_minute'));
+
+  }
+
+  clicksByDay (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrlsAndHash(items, query);
+
+    return this.makeRequest(this.createNiceUrl(query, 'clicks_by_day'));
+  }
+
+  lookup (links) {
+    var query = {
+      format: this.format,
+      url: links,
+      domain: this.domain
+    };
+
+    return this.makeRequest(this.createNiceUrl(query, 'lookup'));
+
+  }
+
+  info (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrlsAndHash(items, query);
+
+    return this.makeRequest(this.createNiceUrl(query, 'info'));
+  }
+
+  referrers (link) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    query[isUri(link) ? 'shortUrl' : 'hash'] = link;
+
+    return this.makeRequest(this.createNiceUrl(query, 'referrers'));
+  }
+
+  countries (link) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    query[isUri(link) ? 'shortUrl' : 'hash'] = link;
+
+    return this.makeRequest(this.createNiceUrl(query, 'countries'));
+  }
+
+  bitlyProDomain (domain) {
+    var query = {
+      format: this.format,
+      domain: domain
+    };
+
+    return this.makeRequest(this.createNiceUrl(query, 'bitly_pro_domain'));
+  }
+
+  history () {
+    var query = {
+      // @todo Implement optional parameters:
+      //   http://dev.bitly.com/user_info.html#v3_user_link_history
+    };
+
+    return this.makeRequest(this.createNiceUrl(query, 'user/link_history'));
+  }
+
+  linkEdit (metadata_field, link, new_value) {
+    var query = {
+      link: link
+    };
+
+    if (Array.isArray(metadata_field) && Array.isArray(new_value)) {
+      query['edit'] = metadata_field.join(',');
+      metadata_field.forEach((field, index) => {
+        query[field] = new_value[index];
+      });
+    } else {
+      query['edit'] = metadata_field;
+      query[metadata_field] = new_value;
+    }
+
+    return this.makeRequest(this.createNiceUrl(query, 'user/link_edit'));
   }
 
 }
