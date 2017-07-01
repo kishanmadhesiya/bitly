@@ -1,0 +1,25 @@
+{
+  "name": "bitly",
+  "version": "1.0.0",
+  "description": "Bitly api",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "istanbul cover _mocha -- -R spec"
+  },
+  "keywords": [
+    "bitly",
+    "shorten",
+    "url"
+  ],
+  "author": "Kishan Madhesiya",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^5.1.0",
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.2",
+    "node-fetch": "^1.7.1",
+    "url": "^0.11.0",
+    "valid-url": "^1.0.9"
+  }
+}
