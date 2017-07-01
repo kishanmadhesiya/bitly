@@ -5,16 +5,15 @@ This is the API of bitly.com
 
 ## Installation
 
-To install via NPM type the following: `npm install bitlyapi`
+Using NPM `npm install bitlyapi`
 
-You can also install via git by cloning: `git clone https://github.com/kishanmadhesiya/bitly.git /path/to/bitly`
+Using GIT `git clone https://github.com/kishanmadhesiya/bitly.git`
 
 ## Usage
 
-This library uses the API provided by bitly and requires an OAuth token to use.
-To get your access token, visit https://bitly.com/a/oauth_apps (under Generic Access Token)
+You need 'ACCESS TOKEN' from bitly.com. Visit: https://bitly.com/a/oauth_apps
 
-See http://dev.bitly.com/ for format of returned objects from the API
+Check http://dev.bitly.com/ for more info.
 
 #### Code
 
@@ -47,7 +46,8 @@ bitly.shorten('https://github.com/kishanmadhesiya/bitly')
 ```
 
 ## Tests
-To run tests type `npm test`. For coverage type `npm run coverage`
+To run tests type `npm test`.
+For coverage type `npm run coverage`
 
 ### Bit.ly Features
 
@@ -55,7 +55,9 @@ This module is limited to the following API methods:
 
 * shorten
 * expand
-* clicks / clicks_by_minute / clicks_by_day
+* clicks
+* clicks_by_minute
+* clicks_by_day
 * referrers
 * countries
 * bitly_pro_domain
@@ -63,5 +65,3 @@ This module is limited to the following API methods:
 * info
 * history
 * link_edit
-
-## This is updated version of https://www.npmjs.com/package/bitly

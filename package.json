@@ -1,6 +1,6 @@
 {
   "name": "bitlyapi",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Bitly api",
   "main": "./src/bitly",
   "scripts": {
