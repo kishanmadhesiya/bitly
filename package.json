@@ -1,8 +1,8 @@
 {
-  "name": "bitly",
-  "version": "1.0.0",
+  "name": "bitlyapi",
+  "version": "1.0.3",
   "description": "Bitly api",
-  "main": "index.js",
+  "main": "./src/bitly",
   "scripts": {
     "test": "mocha",
     "coverage": "istanbul cover _mocha -- -R spec"
@@ -12,7 +12,7 @@
     "shorten",
     "url"
   ],
-  "author": "Kishan Madhesiya",
+  "author": "Kishan Madhesiya [kishanmadhesiya@gmail.com]",
   "license": "ISC",
   "dependencies": {
     "boom": "^5.1.0",

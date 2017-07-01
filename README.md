@@ -4,7 +4,7 @@ For more information on the API request and responses visit the [Bitly API docs]
 
 ## Installation
 
-To install via NPM type the following: `npm install @kishanmadhesiya/bitly`
+To install via NPM type the following: `npm install bitlyapi`
 
 You can also install via git by cloning: `git clone https://github.com/kishanmadhesiya/bitly.git /path/to/bitly`
 
@@ -20,7 +20,7 @@ See http://dev.bitly.com/ for format of returned objects from the API
 ```js
 // For ES2015/ES6
 
-import Bitly from 'bitly';
+import Bitly from 'bitlyapi';
 
 let bitly = new Bitly('<YOUR ACCESS TOKEN>');
 
@@ -33,7 +33,7 @@ bitly.shorten('http://nodejs.org', (response) => {
 
 // For ES5
 
-var Bitly = require('bitly');
+var Bitly = require('bitlyapi');
 var bitly = new Bitly('<YOUR ACCESS TOKEN>');
 
 bitly.shorten('https://github.com/kishanmadhesiya/bitly')
@@ -62,3 +62,5 @@ This module is limited to the following API methods:
 * info
 * history
 * link_edit
+
+## This is updated version of https://www.npmjs.com/package/bitly
