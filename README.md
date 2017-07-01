@@ -1,6 +1,6 @@
-This module provides calls to the [Bitly](http://bitly.com) API for [Nodejs](http://nodejs.org).
-For more information on the API request and responses visit the [Bitly API docs](http://dev.bitly.com/api.html)
+This is the API of bitly.com
 
+[![Build Status](https://travis-ci.org/kishanmadhesiya/bitly.svg?branch=master)](https://travis-ci.org/kishanmadhesiya/bitly/)
 
 ## Installation
 
