@@ -2,18 +2,11 @@ This module provides calls to the [Bitly](http://bitly.com) API for [Nodejs](htt
 For more information on the API request and responses visit the [Bitly API docs](http://dev.bitly.com/api.html)
 
 
-### **** Important update from Version 4 onwards ****
-
-From version 4.0 of this library, the callback in methods have been removed and the library only provides
-promises for each method response.  The library has also been re-written in ES2015/ES6. The transpiled version
-is only distributed via NPM, or can be created the command `npm run compile` if you fork the source. Finally
-support is no longer provided for `node < 0.12`.
-
 ## Installation
 
-To install via NPM type the following: `npm install bitly`
+To install via NPM type the following: `npm install @kishanmadhesiya/bitly`
 
-You can also install via git by cloning: `git clone https://github.com/tanepiper/node-bitly.git /path/to/bitly`
+You can also install via git by cloning: `git clone https://github.com/kishanmadhesiya/bitly.git /path/to/bitly`
 
 ## Usage
 
@@ -43,7 +36,7 @@ bitly.shorten('http://nodejs.org', (response) => {
 var Bitly = require('bitly');
 var bitly = new Bitly('<YOUR ACCESS TOKEN>');
 
-bitly.shorten('https://github.com/tanepiper/node-bitly')
+bitly.shorten('https://github.com/kishanmadhesiya/bitly')
   .then(function(response) {
     var short_url = response.data.url
     // Do something with data
