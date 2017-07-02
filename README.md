@@ -22,7 +22,7 @@ Check http://dev.bitly.com/ for more info.
 
 import Bitly from 'bitlyapi';
 
-let bitly = new Bitly('<YOUR ACCESS TOKEN>');
+let bitly = new Bitly('<ACCESS TOKEN>');
 
 bitly.shorten('http://nodejs.org', (response) => {
   console.log(response);
@@ -34,24 +34,17 @@ bitly.shorten('http://nodejs.org', (response) => {
 // For ES5
 
 var Bitly = require('bitlyapi');
-var bitly = new Bitly('<YOUR ACCESS TOKEN>');
+var bitly = new Bitly('<ACCESS TOKEN>');
 
 bitly.shorten('https://github.com/kishanmadhesiya/bitly')
   .then(function(response) {
-    var short_url = response.data.url
-    // Do something with data
+    console.log(response);
   }, function(error) {
-    throw error;
+    console.log(error);
   });
 ```
 
-## Tests
-To run tests type `npm test`.
-For coverage type `npm run coverage`
-
-### Bit.ly Features
-
-This module is limited to the following API methods:
+### Bit.ly Api Features
 
 * shorten
 * expand
@@ -65,3 +58,7 @@ This module is limited to the following API methods:
 * info
 * history
 * link_edit
+
+## Tests
+To run tests type `npm test`.
+For coverage type `npm run coverage`

@@ -16,27 +16,11 @@ class Bitly {
     this.domain = 'bit.ly';
   }
 
-  createNiceUrl(query, method){
-    query['access_token'] = this.accessToken;
-
-    return url.parse(url.format({
-      protocol: 'https',
-      hostname: this.api_url,
-      pathname: '/' + this.api_version + '/' + method,
-      query: query
-    }));
+  bitlyProDomain (domain) {
+    return this.makeRequestToAPI(this.create_Url({format: this.format,domain: domain}, 'bitly_pro_domain'));
   }
 
-  makeRequest (requestUri) {
-    return new Promise((resolve, reject) => {
-      return fetch(requestUri)
-        .then((response) => {
-        return resolve(response.json());
-        });
-    });
-  }
-
-  sortUrlsAndHash (items, query) {
+  sortUrls_Hash (items, query) {
     let shortUrl = [];
     let hash = [];
 
@@ -63,7 +47,11 @@ class Bitly {
       domain: domain ? domain : this.domain
     };
 
-    return this.makeRequest(this.createNiceUrl(query, 'shorten'));
+    return this.makeRequestToAPI(this.create_Url(query, 'shorten'));
+  }
+
+  history () {
+    return this.makeRequestToAPI(this.create_Url({}, 'user/link_history'));
   }
 
   expand (items) {
@@ -72,54 +60,9 @@ class Bitly {
       domain: this.domain
     };
 
-    this.sortUrlsAndHash(items, query);
+    this.sortUrls_Hash(items, query);
 
-    return this.makeRequest(this.createNiceUrl(query, 'expand'));
-  }
-
-  clicks (items) {
-    var query = {
-      format: this.format,
-      domain: this.domain
-    };
-
-    this.sortUrlsAndHash(items, query);
-
-    return this.makeRequest(this.createNiceUrl(query, 'clicks'));
-  }
-
-  clicksByMinute (items) {
-    var query = {
-      format: this.format,
-      domain: this.domain
-    };
-
-    this.sortUrlsAndHash(items, query);
-
-    return this.makeRequest(this.createNiceUrl(query, 'clicks_by_minute'));
-
-  }
-
-  clicksByDay (items) {
-    var query = {
-      format: this.format,
-      domain: this.domain
-    };
-
-    this.sortUrlsAndHash(items, query);
-
-    return this.makeRequest(this.createNiceUrl(query, 'clicks_by_day'));
-  }
-
-  lookup (links) {
-    var query = {
-      format: this.format,
-      url: links,
-      domain: this.domain
-    };
-    console.log(this.createNiceUrl(query, 'lookup'));
-    return this.makeRequest(this.createNiceUrl(query, 'lookup'));
-
+    return this.makeRequestToAPI(this.create_Url(query, 'expand'));
   }
 
   info (items) {
@@ -128,9 +71,41 @@ class Bitly {
       domain: this.domain
     };
 
-    this.sortUrlsAndHash(items, query);
+    this.sortUrls_Hash(items, query);
 
-    return this.makeRequest(this.createNiceUrl(query, 'info'));
+    return this.makeRequestToAPI(this.create_Url(query, 'info'));
+  }
+
+  clicksByDay (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrls_Hash(items, query);
+
+    return this.makeRequestToAPI(this.create_Url(query, 'clicks_by_day'));
+  }
+
+  lookup (links) {
+    var query = {
+      format: this.format,
+      url: links,
+      domain: this.domain
+    };
+    return this.makeRequestToAPI(this.create_Url(query, 'lookup'));
+
+  }
+
+  clicks (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrls_Hash(items, query);
+
+    return this.makeRequestToAPI(this.create_Url(query, 'clicks'));
   }
 
   referrers (link) {
@@ -141,7 +116,7 @@ class Bitly {
 
     query[isUri(link) ? 'shortUrl' : 'hash'] = link;
 
-    return this.makeRequest(this.createNiceUrl(query, 'referrers'));
+    return this.makeRequestToAPI(this.create_Url(query, 'referrers'));
   }
 
   countries (link) {
@@ -149,28 +124,9 @@ class Bitly {
       format: this.format,
       domain: this.domain
     };
-
     query[isUri(link) ? 'shortUrl' : 'hash'] = link;
 
-    return this.makeRequest(this.createNiceUrl(query, 'countries'));
-  }
-
-  bitlyProDomain (domain) {
-    var query = {
-      format: this.format,
-      domain: domain
-    };
-
-    return this.makeRequest(this.createNiceUrl(query, 'bitly_pro_domain'));
-  }
-
-  history () {
-    var query = {
-      // @todo Implement optional parameters:
-      //   http://dev.bitly.com/user_info.html#v3_user_link_history
-    };
-
-    return this.makeRequest(this.createNiceUrl(query, 'user/link_history'));
+    return this.makeRequestToAPI(this.create_Url(query, 'countries'));
   }
 
   linkEdit (metadata_field, link, new_value) {
@@ -188,9 +144,40 @@ class Bitly {
       query[metadata_field] = new_value;
     }
 
-    return this.makeRequest(this.createNiceUrl(query, 'user/link_edit'));
+    return this.makeRequestToAPI(this.create_Url(query, 'user/link_edit'));
   }
 
+  clicksByMinute (items) {
+    var query = {
+      format: this.format,
+      domain: this.domain
+    };
+
+    this.sortUrls_Hash(items, query);
+
+    return this.makeRequestToAPI(this.create_Url(query, 'clicks_by_minute'));
+
+  }
+
+  create_Url(query, method){
+    query['access_token'] = this.accessToken;
+
+    return url.parse(url.format({
+      protocol: 'https',
+      hostname: this.api_url,
+      pathname: '/' + this.api_version + '/' + method,
+      query: query
+    }));
+  }
+
+  makeRequestToAPI (requestUri) {
+    return new Promise((resolve, reject) => {
+      return fetch(requestUri)
+        .then((response) => {
+        return resolve(response.json());
+        });
+    });
+  }
 
 }
 module.exports = Bitly;
