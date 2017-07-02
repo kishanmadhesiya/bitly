@@ -46,18 +46,43 @@ bitly.shorten('https://github.com/kishanmadhesiya/bitly')
 
 ### Bit.ly Api Features
 
-* shorten
-* expand
-* clicks
-* clicks_by_minute
-* clicks_by_day
-* referrers
-* countries
-* bitly_pro_domain
-* lookup
-* info
-* history
-* link_edit
+* shorten()
+uses:- shorten(LONG_URL)
+
+* expand()  
+uses:- expand(BITLY_HASH) or expand([SHORT_URL, BITLY_HASH]) or expand(SHORT_URL)
+
+* clicks()  
+uses:- clicks(BITLY_HASH) or clicks([SHORT_URL, BITLY_HASH]) or clicks(SHORT_URL)
+
+* clicksByMinute()
+uses:- clicksByMinute(BITLY_HASH) or clicksByMinute([SHORT_URL, BITLY_HASH]) or clicksByMinute(SHORT_URL)
+
+
+* clicksByDay()
+uses:- clicksByDay(BITLY_HASH) or clicksByDay([SHORT_URL, BITLY_HASH]) or clicksByDay(SHORT_URL)
+
+* referrers()
+uses:- referrers(SHORT_URL) or referrers(BITLY_HASH)
+
+* countries()
+uses:- countries(BITLY_HASH) or countries(SHORT_URL)
+
+* bitlyProDomain()
+uses:- bitlyProDomain(LONG_URL)
+
+* lookup()
+uses:- lookup([LONG_URL, 'http://kishanmadhesiya.com']) or lookup(LONG_URL)
+
+* info()
+info(BITLY_HASH) or info([SHORT_URL, BITLY_HASH]) or info(SHORT_URL)
+
+* history()
+uses:- history()
+
+* linkEdit()
+uses:- linkEdit(metadata_field, link, new_value)
+
 
 ## Tests
 To run tests type `npm test`.

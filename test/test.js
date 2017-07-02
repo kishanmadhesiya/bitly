@@ -94,8 +94,8 @@ describe('Clicks', function() {
   });
 });
 
-describe('Info', function() {
-  describe('#info()', function() {
+describe('Clicks', function() {
+  describe('#clicks()', function() {
     it('should return a success for hash', function(done) {
       var bitly = new Bitly(bitly_token);
       bitly.clicks(BITLY_HASH).then((result) => {
@@ -105,8 +105,8 @@ describe('Info', function() {
   });
 });
 
-describe('Info', function() {
-  describe('#info()', function() {
+describe('Clicks', function() {
+  describe('#clicks()', function() {
     it('should return a success for mixed url hash', function(done) {
       var bitly = new Bitly(bitly_token);
       bitly.clicks([SHORT_URL, BITLY_HASH]).then((result) => {
@@ -160,11 +160,22 @@ describe('Referrers', function() {
   });
 });
 
-describe('Countries', function() {
-  describe('#countries()', function() {
+describe('Referrers', function() {
+  describe('#referrers()', function() {
     it('should return a success for hash', function(done) {
       var bitly = new Bitly(bitly_token);
-      bitly.countries(BITLY_HASH).then((result) => {
+      bitly.referrers(BITLY_HASH).then((result) => {
+        done();
+      }, done)
+    });
+  });
+});
+
+describe('Countries', function() {
+  describe('#countries()', function() {
+    it('should return a success for short url', function(done) {
+      var bitly = new Bitly(bitly_token);
+      bitly.countries(SHORT_URL).then((result) => {
         done();
       }, done)
     });
@@ -184,7 +195,7 @@ describe('Countries', function() {
 
 describe('Lookup', function() {
   describe('#lookup()', function() {
-    it('should return a success for hash', function(done) {
+    it('should return a success for short url', function(done) {
       var bitly = new Bitly(bitly_token);
       bitly.lookup(LONG_URL).then((result) => {
         done();
@@ -197,7 +208,7 @@ describe('Lookup', function() {
   describe('#lookup()', function() {
     it('should return a success for hash', function(done) {
       var bitly = new Bitly(bitly_token);
-      bitly.lookup(LONG_URL).then((result) => {
+      bitly.lookup([LONG_URL, 'http://nodejs.org']).then((result) => {
         done();
       }, done)
     });
@@ -217,9 +228,31 @@ describe('History', function() {
 
 describe('ClicksByMinute', function() {
   describe('#clicksByMinute()', function() {
-    it('should return a success for hash', function(done) {
+    it('should return a success for short url', function(done) {
       var bitly = new Bitly(bitly_token);
       bitly.clicksByMinute(SHORT_URL).then((result) => {
+        done();
+      }, done)
+    });
+  });
+});
+
+describe('ClicksByMinute', function() {
+  describe('#clicksByMinute()', function() {
+    it('should return a success for hash', function(done) {
+      var bitly = new Bitly(bitly_token);
+      bitly.clicksByMinute(BITLY_HASH).then((result) => {
+        done();
+      }, done)
+    });
+  });
+});
+
+describe('ClicksByMinute', function() {
+  describe('#clicksByMinute()', function() {
+    it('should return a success for mixed url hash', function(done) {
+      var bitly = new Bitly(bitly_token);
+      bitly.clicksByMinute([SHORT_URL, BITLY_HASH]).then((result) => {
         done();
       }, done)
     });
