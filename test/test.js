@@ -1,10 +1,10 @@
 'use strict';
 
 const Bitly = require('../src/bitly');
-const bitly_token = 'eb1b99efe83c7d029e7600a6b38e32d1c9c2c6d9';
-const LONG_URL = 'http://example.com';
-const SHORT_URL = 'http://bit.ly/1KjIwXl';
-const BITLY_HASH = 'VDcn';
+const bitly_token = 'fbc73f4962d38a128aaa176453dac43f04018b8b';
+const LONG_URL = 'http://kishanmadhesiya.com';
+const SHORT_URL = 'http://bit.ly/2teiL78';
+const BITLY_HASH = 'kIsh';
 
 describe('Shorten_URL', function() {
   describe('#shorten()', function() {
